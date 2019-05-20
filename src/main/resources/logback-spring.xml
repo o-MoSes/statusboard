@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- logback configures itself automatically using the BasicConfigurator 
+	which will cause logging output to be directed to the console if no config-file 
+	is found -->
+<configuration scan="true">
+
+	<!-- sets two appenders FILE & CONSOLE for root FILE logs to /tmp/spring.log -->
+	<include
+		resource="org/springframework/boot/logging/logback/base.xml" />
+
+
+
+	<!-- loggers: define the loglevel and to which appender it will be send 
+		for packages; can be overwritten in code -->
+	<!-- every logger instantiated in a package inherits from the root-logger -->
+
+	<logger name="org.springframework.web" level="INFO">
+	</logger>
+
+	<logger name="rocks.monsees" level="DEBUG">
+	</logger>
+
+	<logger name="org.springframework.security" level="INFO">
+	</logger>
+
+	<logger name="org.hibernate.SQL" level="debug">
+	</logger>
+
+	<logger name="org.springframework.data" level="debug">
+	</logger>
+
+</configuration>
