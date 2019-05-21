@@ -60,10 +60,13 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 			<div class="col dashboard-container">
 				<div class="status-container mx-2 my-3 p-2">
 					<div class="d-flex align-items-center">
-						<i class="fas fa-door-open fa-lg m-2"></i>Status
+						<i class="fas fa-door-open fa-lg m-2"></i><span class="mt-1">Status</span>
+						<button type="button" class="btn btn-add-status btn-sm ml-auto mt-2 mr-2">
+							<i class="fas fa-plus"></i>
+						</button>
 					</div>
 					<div>
-						<table class="table table-hover mt-3">
+						<table class="table table-hover mt-2">
 							<thead>
 								<tr>
 									<th scope="col" class="border-top-0 col-period">Period</th>
@@ -92,6 +95,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 
 									</tr>
 								</c:forEach>
+
 
 								<!-- 	
 								<tr>
