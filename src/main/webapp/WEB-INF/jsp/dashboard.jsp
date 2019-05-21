@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+pageEncoding="UTF-8"%> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html class="h-100">
 <head>
@@ -59,8 +59,7 @@
 		<div class="row h-100">
 			<div class="col dashboard-container">
 				<div class="status-container mx-2 my-3 p-2">
-
-					<div class="">
+					<div class="d-flex align-items-center">
 						<i class="fas fa-door-open fa-lg m-2"></i>Status
 					</div>
 					<div>
@@ -77,8 +76,15 @@
 
 								<c:forEach items="${statusList}" var="status">
 									<tr>
-										<th>${status.begin}</th>
-										<td>${status.available}</td>
+										<td>${status.getStatusPeriod()}</td>
+										<c:choose>
+											<c:when test="${status.available}">
+												<td><span class="dot-available align-middle mr-2"></span>&nbsp;available</td>
+											</c:when>
+											<c:otherwise>
+												<td><span class="dot-unavailable align-middle mr-2"></span>&nbsp;absent</td>
+											</c:otherwise>
+										</c:choose>
 										<td>${status.description}</td>
 										<td class="text-center"><a href="#"><i
 												class="fas fa-pen mx-2"></i></a> <a href="#"><i

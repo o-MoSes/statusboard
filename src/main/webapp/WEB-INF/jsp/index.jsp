@@ -71,7 +71,7 @@
 								<td>${employee.title}&nbsp;${employee.name}</td>
 								<c:choose>
 									<%--  <c:when test="${employee.position == 'master'}"> --%>
-									 <c:when test="${employee.getCurrentStatus().available}">
+									<c:when test="${employee.getCurrentStatus().available}">
 										<td><span class="dot-available"></span></td>
 									</c:when>
 									<c:otherwise>
@@ -80,7 +80,7 @@
 								</c:choose>
 								<%-- <td>${employee.status.description}</td> --%>
 								<td>${employee.getCurrentStatus().getStatusPeriod()}</td>
-								 <td>${employee.getCurrentStatus().description}</td>
+								<td>${employee.getCurrentStatus().description}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -89,7 +89,7 @@
 		</div>
 		<div class="row events ">
 			<div class="col">
-				<h4 class="hilight">Events</h4> 
+				<h4 class="hilight">Events</h4>
 
 				<!-- Event carousel -->
 				<div id="carouselExampleControls" class="carousel slide  mb-5"

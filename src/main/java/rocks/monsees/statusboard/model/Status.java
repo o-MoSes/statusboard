@@ -1,9 +1,7 @@
 package rocks.monsees.statusboard.model;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
-import java.util.Date;
 import java.util.Locale;
 
 import javax.persistence.Entity;
@@ -13,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Status implements Comparable<Status>{
+public class Status implements Comparable<Status> {
 
 	@Id
 	@GeneratedValue
@@ -22,9 +20,9 @@ public class Status implements Comparable<Status>{
 	private LocalDate end;
 	private boolean available;
 	private String description;
-	
+
 	@ManyToOne
-	@JoinColumn(name="employee_id")
+	@JoinColumn(name = "employee_id")
 	private Employee employee;
 
 	public Status() {
@@ -35,7 +33,7 @@ public class Status implements Comparable<Status>{
 		this.available = available;
 		this.description = description;
 	}
-	
+
 	public Status(LocalDate begin, LocalDate end, boolean available, String description) {
 		super();
 		this.begin = begin;
@@ -67,7 +65,7 @@ public class Status implements Comparable<Status>{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 	public Employee getEmployee() {
 		return employee;
 	}
@@ -75,7 +73,7 @@ public class Status implements Comparable<Status>{
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
-	
+
 	public LocalDate getBegin() {
 		return begin;
 	}
@@ -91,10 +89,38 @@ public class Status implements Comparable<Status>{
 	public void setEnd(LocalDate end) {
 		this.end = end;
 	}
-	
-	
+
 	public String getStatusPeriod() {
-		 return this.begin.getDayOfMonth()+". "+this.begin.getMonth().getDisplayName(TextStyle.SHORT,Locale.GERMANY)+"  -  " +this.end.getDayOfMonth()+"."+this.end.getMonthValue();
+
+		// format status period
+		String startDay;
+		String endDay;
+
+		String startMonth;
+		String endMonth;
+
+		// add leading 0 to start day
+		if (String.valueOf(this.begin.getDayOfMonth()).length() < 2) {
+			startDay = String.format("%02d", this.begin.getDayOfMonth());
+		} else {
+			startDay = String.valueOf(this.begin.getDayOfMonth());
+		}
+		startMonth = this.begin.getMonth().getDisplayName(TextStyle.SHORT, Locale.GERMANY);
+
+		// add leading 0 to end day
+		if (String.valueOf(this.end.getDayOfMonth()).length() < 2) {
+			endDay = String.format("%02d", this.end.getDayOfMonth());
+		} else {
+			endDay = String.valueOf(this.end.getDayOfMonth());
+		}
+		endMonth = this.end.getMonth().getDisplayName(TextStyle.SHORT, Locale.GERMANY);
+
+		String formattedBegin = startDay + ". " + startMonth;
+		String formattedEnd = endDay + ". " + endMonth;
+
+//		System.out.println(String.format("%-20s", formattedBegin) + "|");
+
+		return formattedBegin + " - " + formattedEnd;
 	}
 
 	@Override
@@ -110,6 +136,5 @@ public class Status implements Comparable<Status>{
 	public int compareTo(Status status) {
 		return this.begin.compareTo(status.begin);
 	}
-
 
 }
