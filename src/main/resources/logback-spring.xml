@@ -14,19 +14,19 @@
 		for packages; can be overwritten in code -->
 	<!-- every logger instantiated in a package inherits from the root-logger -->
 
-	<logger name="org.springframework.web" level="INFO">
+	<logger name="org.springframework.web" level="DEBUG">
 	</logger>
 
 	<logger name="rocks.monsees" level="DEBUG">
 	</logger>
 
-	<logger name="org.springframework.security" level="INFO">
+	<logger name="org.springframework.security" level="DEBUG">
 	</logger>
 
 	<logger name="org.hibernate.SQL" level="DEBUG">
 	</logger>
 
-	<logger name="org.springframework.data" level="debug">
+	<logger name="org.springframework.data" level="DEBUG">
 	</logger>
 
 </configuration>
