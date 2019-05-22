@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class="h-100">
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%@ include file="common/header.jspf"%>
 <title>dashboard</title>
 </head>
@@ -24,8 +24,9 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 								<i class="far fa-user-circle fa-lg drp-toggle mr-1"></i>${employeeName}
 								<div class="drp-content text-center">
 									<div class="py-4"></div>
+									<a href="/"><i class="fas fa-home"></i></a>
 									<a href="#"><i class="fas fa-user-cog"></i></a>
-									<form class="dropdown-item" action="/checkout" method="post">
+									<form class="dropdown-item p-0" action="/checkout" method="post">
 										<button class="logout-btn" type="submit">
 											<i class="fas fa-sign-out-alt"></i>
 										</button>
@@ -35,23 +36,6 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 								</div>
 							</div>
 						</li>
-
-
-
-						<!-- 
-						<li class="nav-item dropdown mr-3"><a
-							class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-							role="button" data-toggle="dropdown" aria-haspopup="true"
-							aria-expanded="false"><i class="far fa-user-circle fa-lg"></i>&nbsp;${username}</a>
-							<div class="dropdown-menu dropdown-menu-right"
-								aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="#">Profile</a>
-								<div class="dropdown-divider"></div>
-								<form class="dropdown-item" action="/checkout" method="post">
-									<input type="hidden" name="${_csrf.parameterName}"
-										value="${_csrf.token}" /> <input type="submit" value="Logout">
-								</form>
-							</div></li> -->
 					</ul>
 				</nav>
 			</div>
@@ -61,7 +45,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 				<div class="status-container mx-2 my-3 p-2">
 					<div class="d-flex align-items-center">
 						<i class="fas fa-door-open fa-lg m-2"></i><span class="mt-1">Status</span>
-						<button type="button" class="btn btn-add-status btn-sm ml-auto mt-2 mr-2">
+						<button type="button"
+							class="btn btn-add-status btn-sm ml-auto mt-2 mr-2">
 							<i class="fas fa-plus"></i>
 						</button>
 					</div>

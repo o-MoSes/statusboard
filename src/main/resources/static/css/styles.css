@@ -104,6 +104,17 @@ hr {
 	display: inline-block;
 }
 
+/* index.jsp navbar */
+.navbar-hidden{
+	display: none;
+}
+
+.show-btn > .navbar-top{
+	min-height: 70px;
+	max-height: 70px;
+}
+
+
 /* Login-Modal */
 .modal-btn {
 	display: none;
@@ -116,11 +127,15 @@ hr {
 }
 
 .show-btn {
-	min-height: 70px;
+	min-height: 100px;
 }
 
-.show-btn:hover .modal-btn {
+.show-btn:hover .modal-btn{
 	display: block;
+}
+
+.show-btn:hover .navbar-hidden{
+	display: flex;
 }
 
 .fa-chevron-right {
@@ -241,6 +256,8 @@ hr {
 }
 
 .logout-btn {
+	width: 87px;
+	height: 42px;
 	background: none;
 	border: none;
 	color: white;

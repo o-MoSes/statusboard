@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -51,8 +53,33 @@
 	</div>
 	<div class="d-flex flex-row-reverse w-100 show-btn">
 		<!-- using href instead of  data-toggle="modal" data-target="#loginModal" to clean url params when unsuccessfull login is followed by click on chevron-->
-		<a href="/login" class="btn modal-btn mt-4 mr-5"><i
-			class="fas fa-chevron-right fa-lg"></i></a>
+		<sec:authorize access="!isAuthenticated()">
+			<a href="/login" class="btn modal-btn mt-4 mr-5"><i
+				class="fas fa-chevron-right fa-lg"></i></a>
+		</sec:authorize>
+		<sec:authorize access="isAuthenticated()">
+			<nav class="navbar navbar-expand navbar-top justify-content-between navbar-hidden mt-3">
+			<ul class="navbar-nav">
+				<li class="nav-item dropdown mr-3">
+					<div class="drpdwn nav-link">
+						<i class="far fa-user-circle fa-lg drp-toggle mr-1"></i><sec:authentication property="name"/>
+						<div class="drp-content text-center">
+							<div class="py-4"></div>
+							<a href="/dashboard"><i class="fas fa-list"></i></a>
+							<a href="#"><i class="fas fa-user-cog"></i></a>
+							<form class="dropdown-item p-0" action="/checkout" method="post">
+								<button class="logout-btn" type="submit">
+									<i class="fas fa-sign-out-alt"></i>
+								</button>
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" />
+							</form>
+						</div>
+					</div>
+				</li>
+			</ul>
+			</nav>
+		</sec:authorize>
 	</div>
 	<div class="container px-0 pt-4">
 		<div class="toast">
@@ -62,9 +89,10 @@
 		</div>
 		<div class="row status">
 			<div class="col">
+
+
 				<table class="table mt-5 gradient-table">
 					<tbody>
-
 						<c:forEach items="${employees}" var="employee">
 							<tr class="grad-bor-bot-left">
 								<td>${employee.position}</td>

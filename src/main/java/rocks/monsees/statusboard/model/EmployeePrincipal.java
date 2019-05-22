@@ -25,7 +25,6 @@ public class EmployeePrincipal implements UserDetails{
 
 	@Override
 	public String getPassword() {
-		System.out.println(employee.getPassword());
 		return employee.getPassword();
 	}
 
