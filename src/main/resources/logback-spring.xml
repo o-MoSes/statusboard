@@ -20,13 +20,13 @@
 	<logger name="rocks.monsees" level="DEBUG">
 	</logger>
 
-	<logger name="org.springframework.security" level="DEBUG">
+	<logger name="org.springframework.security" level="WARN">
 	</logger>
 
-	<logger name="org.hibernate.SQL" level="DEBUG">
+	<logger name="org.hibernate.SQL" level="WARN">
 	</logger>
 
-	<logger name="org.springframework.data" level="DEBUG">
+	<logger name="org.springframework.data" level="WARN">
 	</logger>
 
 </configuration>

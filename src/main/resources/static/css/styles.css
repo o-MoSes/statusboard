@@ -307,6 +307,12 @@ hr {
     border-color: rgba(1, 26, 35, 0.9);
 }
 
+
+/* override placeholder color */
+.form-control::placeholder {
+	color: rgba(235, 163, 0, 0.5) !important;
+}
+
 /*
 .row {
 	border-top: solid 3px rgba(235, 163, 0, 1);

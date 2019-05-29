@@ -10,13 +10,17 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Status implements Comparable<Status> {
 
 	@Id
 	@GeneratedValue
 	private int id;
+	@DateTimeFormat(pattern="dd.MM.yyyy")
 	private LocalDate begin;
+	@DateTimeFormat(pattern="dd.MM.yyyy")
 	private LocalDate end;
 	private boolean available;
 	private String description;

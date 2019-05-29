@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"%> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core"%>
+uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglibprefix="form"
+uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class="h-100">
 <head>
@@ -18,21 +19,46 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 						aria-label="Close">
 						<span class="text-light" aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title font-weight-bold ">add status</h4>
+					<h4 class="modal-title font-weight-bold ">Status</h4>
 				</div>
-				<div class="modal-body">
-					<form>
+				<div class="modal-body mt-2">
+					<form:form method="POST" action="addStatus"
+						modelAttribute="newStatus">
 						<div class="row">
 							<div class="col">
-								<input type="text" class="form-control" placeholder="First name">
-							</div>
-							<div class="col">
-								<input type="text" class="form-control" placeholder="Last name">
+								<div class="form-group">
+									<label for="begin">begin</label>
+									<form:input type="text"
+										class="form-control bg-transparent  bottom-border text-white text-center"
+										placeholder="begin" id="begin" path="begin" />
+								</div>
+								<div class="form-group">
+									<label for="end">end</label>
+									<form:input type="text"
+										class="form-control bg-transparent bottom-border text-white text-center"
+										placeholder="end" path="end" />
+
+								</div>
+								<div class="form-group">
+									<label for="statusSelect">availability</label> <select
+										class="form-control bg-transparent bottom-border text-white"
+										id="statusSelect">
+										<option>available</option>
+										<option>absent</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="description">description:</label>
+									<form:input type="text"
+										class="form-control bg-transparent bottom-border text-white "
+										placeholder="Out for lunch with my team, yeah!"
+										id="description" path="description" />
+								</div>
 							</div>
 						</div>
 						<button type="submit"
 							class="btn btn-outline-light mx-2 mt-4 login-btn rounded-pill float-right">Submit</button>
-					</form>
+					</form:form>
 				</div>
 			</div>
 		</div>
