@@ -9,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -18,11 +21,20 @@ public class Status implements Comparable<Status> {
 	@Id
 	@GeneratedValue
 	private int id;
+	
+	@NotNull
+	@FutureOrPresent
 	@DateTimeFormat(pattern="dd.MM.yyyy")
 	private LocalDate begin;
+	
+	@NotNull
+	@FutureOrPresent
 	@DateTimeFormat(pattern="dd.MM.yyyy")
 	private LocalDate end;
+	
 	private boolean available;
+	
+	@Size(min=0,max=22)
 	private String description;
 
 	@ManyToOne

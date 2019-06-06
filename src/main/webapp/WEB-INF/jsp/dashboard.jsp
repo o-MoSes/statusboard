@@ -30,18 +30,18 @@ uri="http://www.springframework.org/tags/form" %>
 									<label for="begin">begin</label>
 									<form:input type="text"
 										class="form-control bg-transparent  bottom-border text-white text-center"
-										placeholder="begin" id="begin" path="begin" />
+										placeholder="begin" id="begin" path="begin" value="${newStatus.begin}"/>
 								</div>
 								<div class="form-group">
 									<label for="end">end</label>
 									<form:input type="text"
 										class="form-control bg-transparent bottom-border text-white text-center"
-										placeholder="end" path="end" />
+										placeholder="end" path="end" value="${newStatus.end}"/>
 
 								</div>
 								<div class="form-group">
 									<label for="statusSelect">availability</label> <select
-										class="form-control bg-transparent bottom-border text-white"
+										class="form-control  bottom-border text-white"
 										id="statusSelect">
 										<option>available</option>
 										<option>absent</option>
@@ -52,7 +52,7 @@ uri="http://www.springframework.org/tags/form" %>
 									<form:input type="text"
 										class="form-control bg-transparent bottom-border text-white "
 										placeholder="Out for lunch with my team, yeah!"
-										id="description" path="description" />
+										id="description" path="description"  value="${newStatus.description}"/>
 								</div>
 							</div>
 						</div>
