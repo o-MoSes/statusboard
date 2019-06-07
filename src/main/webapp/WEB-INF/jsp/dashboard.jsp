@@ -7,6 +7,12 @@ uri="http://www.springframework.org/tags/form" %>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%@ include file="common/header.jspf"%>
+<script type="text/javascript" src="js/showAddStatusModal.js" ></script>
+<script type="text/javascript" defer>
+	var showIt = "${showAddStatusModal}";
+	if(showIt)
+		show();
+</script>
 <title>dashboard</title>
 </head>
 <body class="h-100">
@@ -30,14 +36,16 @@ uri="http://www.springframework.org/tags/form" %>
 									<label for="begin">begin</label>
 									<form:input type="text"
 										class="form-control bg-transparent  bottom-border text-white text-center"
-										placeholder="begin" id="begin" path="begin" value="${newStatus.begin}"/>
+										placeholder="begin" id="begin" path="begin"
+										value="${newStatus.begin}" />
+									<form:errors path="begin" style="color:red" />
 								</div>
 								<div class="form-group">
 									<label for="end">end</label>
 									<form:input type="text"
 										class="form-control bg-transparent bottom-border text-white text-center"
-										placeholder="end" path="end" value="${newStatus.end}"/>
-
+										placeholder="end" path="end" value="${newStatus.end}" />
+									<form:errors path="end" style="color:red" value="hey" />
 								</div>
 								<div class="form-group">
 									<label for="statusSelect">availability</label> <select
@@ -52,7 +60,8 @@ uri="http://www.springframework.org/tags/form" %>
 									<form:input type="text"
 										class="form-control bg-transparent bottom-border text-white "
 										placeholder="Out for lunch with my team, yeah!"
-										id="description" path="description"  value="${newStatus.description}"/>
+										id="description" path="description"
+										value="${newStatus.description}" />
 								</div>
 							</div>
 						</div>
@@ -135,6 +144,7 @@ uri="http://www.springframework.org/tags/form" %>
 
 									</tr>
 								</c:forEach>
+							
 
 
 								<!-- 	
@@ -170,6 +180,7 @@ uri="http://www.springframework.org/tags/form" %>
 				<div class="event-container mx-2 my-3 p-2">
 					<i class="far fa-calendar-alt fa-lg m-2"></i> Events
 					<div>Here are the events...</div>
+					
 				</div>
 			</div>
 		</div>

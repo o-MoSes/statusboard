@@ -8,8 +8,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%@ include file="common/header.jspf"%>
-<script type="text/javascript" src="js/time.js"></script>
-<script type="text/javascript" src="js/showLoginLogoutResult.js"></script>
+<script type="text/javascript" src="js/time.js" defer></script>
+<script type="text/javascript" src="js/showLoginLogoutResult.js" defer></script>
 <title>statusboard</title>
 </head>
 <body>
@@ -58,15 +58,17 @@
 				class="fas fa-chevron-right fa-lg"></i></a>
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
-			<nav class="navbar navbar-expand navbar-top justify-content-between navbar-hidden mt-3">
+			<nav
+				class="navbar navbar-expand navbar-top justify-content-between navbar-hidden mt-3">
 			<ul class="navbar-nav">
 				<li class="nav-item dropdown mr-3">
 					<div class="drpdwn nav-link">
-						<i class="far fa-user-circle fa-lg drp-toggle mr-1"></i><sec:authentication property="name"/>
+						<i class="far fa-user-circle fa-lg drp-toggle mr-1"></i>
+						<sec:authentication property="name" />
 						<div class="drp-content text-center">
 							<div class="py-4"></div>
-							<a href="/dashboard"><i class="fas fa-list"></i></a>
-							<a href="#"><i class="fas fa-user-cog"></i></a>
+							<a href="/dashboard"><i class="fas fa-list"></i></a> <a href="#"><i
+								class="fas fa-user-cog"></i></a>
 							<form class="dropdown-item p-0" action="/checkout" method="post">
 								<button class="logout-btn" type="submit">
 									<i class="fas fa-sign-out-alt"></i>

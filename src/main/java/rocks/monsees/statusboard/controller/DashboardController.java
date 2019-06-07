@@ -28,33 +28,33 @@ public class DashboardController {
 	EmployeeService employeeService;
 
 	@GetMapping("/dashboard")
-	public String showDashboard(@ModelAttribute("newStatus") Status newStatus, Model model, Principal principal) {
+	public String showDashboard(Model model, Principal principal) {
 		logger.debug("Trying to fetch dashboard.jsp");
 		model.addAttribute("employeeName", principal.getName());
 		model.addAttribute("statusList", employeeService.getEmployeeByPosition(principal.getName()).getStatusList());
 
-		if (null == newStatus) {
+
+		
+		//check if status was already added to model by redirect
+		if(!model.containsAttribute("newStatus")) {
 			model.addAttribute("newStatus", new Status());
 		} else {
-			//js to show modal on attribute value not implemented
+			//add attribute to model to indicate that modal shall be shown again
 			model.addAttribute("showAddStatusModal", true);
-			model.addAttribute("newStatus", newStatus);
 		}
-
 		return "dashboard";
 	}
 
 	@PostMapping("addStatus")
-	public ModelAndView addStatus(@Valid @ModelAttribute("newStatus") Status newStatus, BindingResult bindingResult,
+	public String addStatus(@Valid @ModelAttribute("newStatus") Status newStatus, BindingResult result,
 			RedirectAttributes ra) {
 
-		if (bindingResult.hasErrors()) {
-			System.out.println("Fehler:" + newStatus);
+		//add command bean and binding result to redirect in case of validation error 
+		if (result.hasErrors()) {
 			ra.addFlashAttribute("newStatus", newStatus);
-		} else {
-			System.out.println("kein Fehler:" + newStatus);
-		}
-		return new ModelAndView("redirect:/dashboard");
+			ra.addFlashAttribute("org.springframework.validation.BindingResult.newStatus", result);
+		} 
+		return "redirect:/dashboard";
 	}
 
 }

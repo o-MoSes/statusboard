@@ -4,7 +4,7 @@
  */
 var urlParams = new URLSearchParams(window.location.search);
 
-window.onload = function() {
+//window.onload = function() {
 
 	if (urlParams.has('error') || window.location.pathname === "/login") {
 		$('#loginModal').modal('show');
@@ -22,4 +22,4 @@ window.onload = function() {
 		$('#position').delay(1000).focus();
 	});
 
-};
+//};
