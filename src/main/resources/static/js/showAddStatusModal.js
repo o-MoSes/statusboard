@@ -1,17 +1,16 @@
 /**
- * shows the modal to add a status after 
- * after user entered invalid data
+ * shows the modal to add a status after after user entered invalid data
  */
 
-
-
-//var show = "${showAddStatusModal}";
-
-function show(){
+// var show = "${showAddStatusModal}";
+function show() {
 	console.log("trying to show modal");
-//	document.getElementById("#addStatusModal").modal('show');
+	var length = $('#addStatusModal').length;
+	console.log(length);
+
+
 }
 
-//test();
+// test();
 
-//alert("world");
+// alert("world");

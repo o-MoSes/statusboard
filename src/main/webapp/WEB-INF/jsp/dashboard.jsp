@@ -7,11 +7,18 @@ uri="http://www.springframework.org/tags/form" %>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%@ include file="common/header.jspf"%>
-<script type="text/javascript" src="js/showAddStatusModal.js" ></script>
-<script type="text/javascript" defer>
-	var showIt = "${showAddStatusModal}";
+<script type="text/javascript" src="js/showAddStatusModal.js" defer></script>
+<script type="text/javascript">
+	/**var showIt = "${showAddStatusModal}";
 	if(showIt)
 		show();
+	 */
+	 window.addEventListener ('load', function () {
+
+	$('#toggleModal').click();
+		var length = $('#addStatusModal').length;
+		console.log(length);
+	});
 </script>
 <title>dashboard</title>
 </head>
@@ -108,7 +115,7 @@ uri="http://www.springframework.org/tags/form" %>
 				<div class="status-container mx-2 my-3 p-2">
 					<div class="d-flex align-items-center">
 						<i class="fas fa-door-open fa-lg m-2"></i><span class="mt-1">Status</span>
-						<button type="button"
+						<button type="button" id="toggleModal"
 							class="btn btn-add-status btn-sm ml-auto mt-2 mr-2"
 							data-toggle="modal" data-target="#addStatusModal">
 							<i class="fas fa-plus"></i>
@@ -144,7 +151,7 @@ uri="http://www.springframework.org/tags/form" %>
 
 									</tr>
 								</c:forEach>
-							
+
 
 
 								<!-- 	
@@ -179,8 +186,8 @@ uri="http://www.springframework.org/tags/form" %>
 				</div>
 				<div class="event-container mx-2 my-3 p-2">
 					<i class="far fa-calendar-alt fa-lg m-2"></i> Events
-					<div>Here are the events...</div>
-					
+					<div id="events">Here are the events...</div>
+
 				</div>
 			</div>
 		</div>
