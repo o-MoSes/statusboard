@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"%> <%@ taglib prefix="c"
 uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglibprefix="form"
-uri="http://www.springframework.org/tags/form" %>
+uri="http://www.springframework.org/tags/form" %> <%@ taglib
+prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class="h-100">
 <head>
@@ -9,13 +10,10 @@ uri="http://www.springframework.org/tags/form" %>
 <%@ include file="common/header.jspf"%>
 <script defer type="text/javascript" src="js/showAddStatusModal.js"></script>
 <script type="text/javascript">
-
 	window.addEventListener('load', function() {
 		//modelattribute cant be accessed from external js
-		if ("${showAddStatusModal}") {
+		if ("${showAddStatusModal}")
 			showModal();
-		} else
-			console.log("no modal to show");
 	});
 </script>
 <title>dashboard</title>
@@ -39,18 +37,24 @@ uri="http://www.springframework.org/tags/form" %>
 							<div class="col">
 								<div class="form-group">
 									<label for="begin">begin</label>
+									<!-- parse and format the toString date returned by EL -->
+									<fmt:parseDate value="${newStatus.begin}" var="parsedBegin" pattern="yyyy-MM-dd" />
+									<fmt:formatDate type="date" value="${parsedBegin}" pattern="dd.MM.yyyy" var="formattedBegin"/>
 									<form:input type="text"
 										class="form-control bg-transparent  bottom-border text-white text-center"
 										placeholder="begin" id="begin" path="begin"
-										value="${newStatus.begin}" />
+										value="${formattedBegin}" />
 									<form:errors path="begin" style="color:red" />
 								</div>
 								<div class="form-group">
 									<label for="end">end</label>
+									<!-- parse and format the toString date returned by EL -->
+									<fmt:parseDate value="${newStatus.end}" var="parsedEnd" pattern="yyyy-MM-dd" />
+									<fmt:formatDate type="date" value="${parsedEnd}" pattern="dd.MM.yyyy" var="formattedEnd"/>
 									<form:input type="text"
 										class="form-control bg-transparent bottom-border text-white text-center"
-										placeholder="end" path="end" value="${newStatus.end}" />
-									<form:errors path="end" style="color:red" value="hey" />
+										placeholder="end" path="end" value="${formattedEnd}"/>
+									<form:errors path="end" style="color:red"/>
 								</div>
 								<div class="form-group">
 									<label for="statusSelect">availability</label> <select
@@ -66,7 +70,7 @@ uri="http://www.springframework.org/tags/form" %>
 										class="form-control bg-transparent bottom-border text-white "
 										placeholder="Out for lunch with my team, yeah!"
 										id="description" path="description"
-										value="${newStatus.description}" />
+										value="${newStatus.description}" maxlength="22" />
 								</div>
 							</div>
 						</div>
@@ -130,7 +134,6 @@ uri="http://www.springframework.org/tags/form" %>
 								</tr>
 							</thead>
 							<tbody>
-
 								<c:forEach items="${statusList}" var="status">
 									<tr>
 										<td>${status.getStatusPeriod()}</td>
@@ -146,38 +149,8 @@ uri="http://www.springframework.org/tags/form" %>
 										<td class="text-center"><a href="#"><i
 												class="fas fa-pen mx-2"></i></a> <a href="#"><i
 												class="fas fa-trash mx-2"></i></a></td>
-
 									</tr>
 								</c:forEach>
-
-
-
-								<!-- 	
-								<tr>
-									<th scope="row">1</th>
-									<td>Mark</td>
-									<td>Otto</td>
-									<td class="text-center"><a href="#"><i
-											class="fas fa-pen mx-2"></i></a> <a href="#"><i
-											class="fas fa-trash mx-2"></i></a></td>
-								</tr>
-								<tr>
-									<th scope="row">2</th>
-									<td>Jacob</td>
-									<td>Thornton</td>
-									<td class="text-center"><a href="#"><i
-											class="fas fa-pen mx-2"></i></a> <a href="#"><i
-											class="fas fa-trash mx-2"></i></a></td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Larry</td>
-									<td>the Bird</td>
-									<td class="text-center"><a href="#"><i
-											class="fas fa-pen mx-2"></i></a> <a href="#"><i
-											class="fas fa-trash mx-2"></i></a></td>
-								</tr>
-								 -->
 							</tbody>
 						</table>
 					</div>
@@ -185,7 +158,6 @@ uri="http://www.springframework.org/tags/form" %>
 				<div class="event-container mx-2 my-3 p-2">
 					<i class="far fa-calendar-alt fa-lg m-2"></i> Events
 					<div id="events">Here are the events...</div>
-
 				</div>
 			</div>
 		</div>

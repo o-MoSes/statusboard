@@ -22,13 +22,13 @@ public class Status implements Comparable<Status> {
 	@GeneratedValue
 	private int id;
 	
-	@NotNull
-	@FutureOrPresent
+	@NotNull(message = "Please enter a start date.")
+	@FutureOrPresent(message = "Begin need to be today or in future.")
 	@DateTimeFormat(pattern="dd.MM.yyyy")
 	private LocalDate begin;
 	
-	@NotNull
-	@FutureOrPresent
+	@NotNull(message = "Please enter a end date")
+	@FutureOrPresent(message = "End need to be today or in future.")
 	@DateTimeFormat(pattern="dd.MM.yyyy")
 	private LocalDate end;
 	
