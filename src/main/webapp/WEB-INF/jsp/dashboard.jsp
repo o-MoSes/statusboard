@@ -7,17 +7,15 @@ uri="http://www.springframework.org/tags/form" %>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%@ include file="common/header.jspf"%>
-<script type="text/javascript" src="js/showAddStatusModal.js" defer></script>
+<script defer type="text/javascript" src="js/showAddStatusModal.js"></script>
 <script type="text/javascript">
-	/**var showIt = "${showAddStatusModal}";
-	if(showIt)
-		show();
-	 */
-	 window.addEventListener ('load', function () {
 
-	$('#toggleModal').click();
-		var length = $('#addStatusModal').length;
-		console.log(length);
+	window.addEventListener('load', function() {
+		//modelattribute cant be accessed from external js
+		if ("${showAddStatusModal}") {
+			showModal();
+		} else
+			console.log("no modal to show");
 	});
 </script>
 <title>dashboard</title>
