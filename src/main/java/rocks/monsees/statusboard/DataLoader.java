@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import rocks.monsees.statusboard.model.Authority;
@@ -22,11 +23,19 @@ public class DataLoader implements CommandLineRunner {
 
 	@Autowired
 	private EmployeeService employeeService;
+	
+	@Autowired
+	ApplicationContext ctx;
 
 	@Override
-
 	public void run(String... strings) throws Exception {
 		logger.debug("Loading app data...");
+		
+//		logger.debug("Fetching all bean names");
+//		String[] beanNames = ctx.getBeanDefinitionNames();
+//
+//		for(String s : beanNames)
+//			System.out.println(s);
 //		logger.debug(employeeService.getAllEmployees().toString());
 
 	

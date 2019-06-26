@@ -16,6 +16,12 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 			showModal();
 	});
 </script>
+<script type="text/javascript">
+	window.addEventListener('load', function() {
+		$("#begin").datepicker();
+		$("#end").datepicker();
+	});
+</script>
 <title>dashboard</title>
 </head>
 <body class="h-100">
@@ -38,8 +44,10 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 								<div class="form-group">
 									<label for="begin">begin</label>
 									<!-- parse and format the toString date returned by EL -->
-									<fmt:parseDate value="${newStatus.begin}" var="parsedBegin" pattern="yyyy-MM-dd" />
-									<fmt:formatDate type="date" value="${parsedBegin}" pattern="dd.MM.yyyy" var="formattedBegin"/>
+									<fmt:parseDate value="${newStatus.begin}" var="parsedBegin"
+										pattern="yyyy-MM-dd" />
+									<fmt:formatDate type="date" value="${parsedBegin}"
+										pattern="dd.MM.yyyy" var="formattedBegin" />
 									<form:input type="text"
 										class="form-control bg-transparent  bottom-border text-white text-center"
 										placeholder="begin" id="begin" path="begin"
@@ -49,12 +57,14 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 								<div class="form-group">
 									<label for="end">end</label>
 									<!-- parse and format the toString date returned by EL -->
-									<fmt:parseDate value="${newStatus.end}" var="parsedEnd" pattern="yyyy-MM-dd" />
-									<fmt:formatDate type="date" value="${parsedEnd}" pattern="dd.MM.yyyy" var="formattedEnd"/>
+									<fmt:parseDate value="${newStatus.end}" var="parsedEnd"
+										pattern="yyyy-MM-dd" />
+									<fmt:formatDate type="date" value="${parsedEnd}"
+										pattern="dd.MM.yyyy" var="formattedEnd" />
 									<form:input type="text"
 										class="form-control bg-transparent bottom-border text-white text-center"
-										placeholder="end" path="end" value="${formattedEnd}"/>
-									<form:errors path="end" style="color:red"/>
+										placeholder="end" path="end" value="${formattedEnd}" />
+									<form:errors path="end" style="color:red" />
 								</div>
 								<div class="form-group">
 									<label for="statusSelect">availability</label> <select

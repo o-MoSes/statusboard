@@ -33,13 +33,11 @@ public class DashboardController {
 		model.addAttribute("employeeName", principal.getName());
 		model.addAttribute("statusList", employeeService.getEmployeeByPosition(principal.getName()).getStatusList());
 
-
-		
-		//check if status was already added to model by redirect
-		if(!model.containsAttribute("newStatus")) {
+		// check if status was already added to model by redirect
+		if (!model.containsAttribute("newStatus")) {
 			model.addAttribute("newStatus", new Status());
 		} else {
-			//add attribute to model to indicate that modal shall be shown again
+			// add attribute to model to indicate that modal shall be shown again
 			model.addAttribute("showAddStatusModal", true);
 		}
 		return "dashboard";
@@ -49,11 +47,12 @@ public class DashboardController {
 	public String addStatus(@Valid @ModelAttribute("newStatus") Status newStatus, BindingResult result,
 			RedirectAttributes ra) {
 
-		//add command bean and binding result to redirect in case of validation error 
+		// add command bean and binding result to redirect in case of validation error
 		if (result.hasErrors()) {
 			ra.addFlashAttribute("newStatus", newStatus);
 			ra.addFlashAttribute("org.springframework.validation.BindingResult.newStatus", result);
-		} 
+		}
+
 		return "redirect:/dashboard";
 	}
 
