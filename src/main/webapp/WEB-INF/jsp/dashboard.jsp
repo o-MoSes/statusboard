@@ -1,25 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-pageEncoding="ISO-8859-1"%> <%@ taglib prefix="c"
-uri="http://java.sun.com/jsp/jstl/core"%> <%@ taglibprefix="form"
-uri="http://www.springframework.org/tags/form" %> <%@ taglib
-prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglibprefix ="form"
+uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html class="h-100">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%@ include file="common/header.jspf"%>
-<script defer type="text/javascript" src="js/showAddStatusModal.js"></script>
+<script defer type="text/javascript"
+	src="${pageContext.request.contextPath}js/showAddStatusModal.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}js/addDatepicker.js"></script>
 <script type="text/javascript">
 	window.addEventListener('load', function() {
 		//modelattribute cant be accessed from external js
 		if ("${showAddStatusModal}")
 			showModal();
-	});
-</script>
-<script type="text/javascript">
-	window.addEventListener('load', function() {
-		$("#begin").datepicker();
-		$("#end").datepicker();
 	});
 </script>
 <title>dashboard</title>
@@ -37,7 +37,8 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 					<h4 class="modal-title font-weight-bold ">Status</h4>
 				</div>
 				<div class="modal-body mt-2">
-					<form:form method="POST" action="addStatus"
+					<form:form method="POST"
+						action="${pageContext.request.contextPath}addStatus"
 						modelAttribute="newStatus">
 						<div class="row">
 							<div class="col">
@@ -95,7 +96,8 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 		<div class="row">
 			<div class="col px-0">
 				<nav class="navbar navbar-expand navbar-top justify-content-between">
-				<a class="navbar-brand" href="/"> <!-- <img
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/">
+					<!-- <img
 						src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30"
 						height="30" class="d-inline-block align-top" alt=""> --> <i
 					class="fas fa-list hilight"></i>&nbsp;statusboard
@@ -106,9 +108,13 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 							<i class="far fa-user-circle fa-lg drp-toggle mr-1"></i>${employeeName}
 							<div class="drp-content text-center">
 								<div class="py-4"></div>
-								<a href="/"><i class="fas fa-home"></i></a> <a href="#"><i
+								<a href="${pageContext.request.contextPath}/"><i
+									class="fas fa-home"></i></a> <a
+									href="${pageContext.request.contextPath}#"><i
 									class="fas fa-user-cog"></i></a>
-								<form class="dropdown-item p-0" action="/checkout" method="post">
+								<form class="dropdown-item p-0"
+									action="${pageContext.request.contextPath}/checkout"
+									method="post">
 									<button class="logout-btn" type="submit">
 										<i class="fas fa-sign-out-alt"></i>
 									</button>
@@ -156,8 +162,10 @@ prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 											</c:otherwise>
 										</c:choose>
 										<td>${status.description}</td>
-										<td class="text-center"><a href="#"><i
-												class="fas fa-pen mx-2"></i></a> <a href="#"><i
+										<td class="text-center"><a
+											href="<c:url value="/editStatus?id=${status.id}"/>"><i
+												class="fas fa-pen mx-2"></i></a> <a
+											href="<c:url value="/delete/status?id=${status.id}"/>" onclick="if (!(confirm('Do you really wanna delete the status?'))) return false"><i
 												class="fas fa-trash mx-2"></i></a></td>
 									</tr>
 								</c:forEach>

@@ -15,6 +15,7 @@ import rocks.monsees.statusboard.model.Authority;
 import rocks.monsees.statusboard.model.Employee;
 import rocks.monsees.statusboard.model.Status;
 import rocks.monsees.statusboard.service.EmployeeService;
+import rocks.monsees.statusboard.service.StatusService;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -23,6 +24,11 @@ public class DataLoader implements CommandLineRunner {
 
 	@Autowired
 	private EmployeeService employeeService;
+	
+	
+	@Autowired
+	private StatusService statusService;
+	
 	
 	@Autowired
 	ApplicationContext ctx;
@@ -44,8 +50,10 @@ public class DataLoader implements CommandLineRunner {
 //		Employee master = new Employee("master", "CTO", "Peter", "peter", 
 //				new HashSet<Authority>(Arrays.asList(Authority.USER, Authority.ADMIN)));
 //		
-//		master.addStatus(new Status(LocalDate.of(2019, 5, 12),LocalDate.of(2019, 10, 3),true,"status"));
-//		master.addStatus(new Status(LocalDate.of(2019, 5, 10),LocalDate.of(2019, 5, 11),true,"status2"));
+//	
+//		
+//		master.addStatus(new Status(LocalDate.of(2019, 8, 12),LocalDate.of(2019, 10, 3),true,"status"));
+//		master.addStatus(new Status(LocalDate.of(2019, 8, 10),LocalDate.of(2019, 8, 11),true,"status2"));
 //		
 //		
 //		
@@ -53,14 +61,25 @@ public class DataLoader implements CommandLineRunner {
 //		Employee slave = new Employee("slave", "CFO", "Xenia", "xenia",
 //				new HashSet<Authority>(Arrays.asList(Authority.USER)));
 //		
-//		slave.addStatus(new Status(LocalDate.of(2019, 4, 3),LocalDate.of(2019, 4, 4),false,"status"));
-//		slave.addStatus(new Status(LocalDate.of(2019, 4, 1),LocalDate.of(2019, 4, 2),false,"status2"));
+//		slave.addStatus(new Status(LocalDate.of(2019, 11, 3),LocalDate.of(2019, 11, 4),false,"status"));
+//		slave.addStatus(new Status(LocalDate.of(2019, 11, 1),LocalDate.of(2019, 11, 2),false,"status2"));
 //		
 //		employeeService.addEmployee(master);
 //		employeeService.addEmployee(slave);
 		
-		
 //		employeeService.deleteEmployee("master");
 //		employeeService.deleteEmployee("slave");
+		
+		
+//		employeeService.getEmployeeByPosition("master").getStatusList().clear();
+		
+//		Employee master = employeeService.getEmployeeByPositionWithStatusList("master");
+//		master.getStatusList().clear();
+//		employeeService.updateEmployee(master);
+//		
+		
+//		Employee master = employeeService.getEmployeeByPosition("master");
+//		master.addStatus(new Status(LocalDate.of(2019, 8, 13),LocalDate.of(2019, 10, 5),true,"debug"));
+//		employeeService.updateEmployee(master);
 	}
 }

@@ -15,26 +15,29 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import rocks.monsees.statusboard.validation.DateFieldConstraint;
+
 @Entity
+@DateFieldConstraint
 public class Status implements Comparable<Status> {
 
 	@Id
 	@GeneratedValue
 	private int id;
-	
+
 	@NotNull(message = "Please enter a start date.")
 	@FutureOrPresent(message = "Begin need to be today or in future.")
-	@DateTimeFormat(pattern="dd.MM.yyyy")
+	@DateTimeFormat(pattern = "dd.MM.yyyy")
 	private LocalDate begin;
-	
+
 	@NotNull(message = "Please enter a end date")
 	@FutureOrPresent(message = "End need to be today or in future.")
-	@DateTimeFormat(pattern="dd.MM.yyyy")
+	@DateTimeFormat(pattern = "dd.MM.yyyy")
 	private LocalDate end;
-	
+
 	private boolean available;
-	
-	@Size(min=0,max=22)
+
+	@Size(min = 0, max = 22)
 	private String description;
 
 	@ManyToOne
@@ -146,7 +149,7 @@ public class Status implements Comparable<Status> {
 	}
 
 	/**
-	 * Compares Status by id
+	 * Compares Status by begin
 	 */
 	@Override
 	public int compareTo(Status status) {

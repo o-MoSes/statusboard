@@ -8,8 +8,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%@ include file="common/header.jspf"%>
-<script type="text/javascript" src="js/time.js" defer></script>
-<script type="text/javascript" src="js/showLoginLogoutResult.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}js/time.js" defer></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}js/showLoginLogoutResult.js" defer></script>
 <title>statusboard</title>
 </head>
 <body>
@@ -54,7 +54,7 @@
 	<div class="d-flex flex-row-reverse w-100 show-btn">
 		<!-- using href instead of  data-toggle="modal" data-target="#loginModal" to clean url params when unsuccessfull login is followed by click on chevron-->
 		<sec:authorize access="!isAuthenticated()">
-			<a href="/login" class="btn modal-btn mt-4 mr-5"><i
+			<a href="${pageContext.request.contextPath}/login" class="btn modal-btn mt-4 mr-5"><i
 				class="fas fa-chevron-right fa-lg"></i></a>
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
@@ -67,7 +67,7 @@
 						<sec:authentication property="name" />
 						<div class="drp-content text-center">
 							<div class="py-4"></div>
-							<a href="/dashboard"><i class="fas fa-list"></i></a> <a href="#"><i
+							<a href="${pageContext.request.contextPath}/dashboard"><i class="fas fa-list"></i></a> <a href="${pageContext.request.contextPath}#"><i
 								class="fas fa-user-cog"></i></a>
 							<form class="dropdown-item p-0" action="/checkout" method="post">
 								<button class="logout-btn" type="submit">
@@ -132,11 +132,11 @@
 							<h3 class="text-center">${employees[1].position}</h3>
 						</div>
 					</div>
-					<a class="carousel-control-prev" href="#carouselExampleControls"
+					<a class="carousel-control-prev" href="${pageContext.request.contextPath}#carouselExampleControls"
 						role="button" data-slide="prev"> <span
 						class="carousel-control-prev-icon" aria-hidden="true"></span> <span
 						class="sr-only">Previous</span>
-					</a> <a class="carousel-control-next" href="#carouselExampleControls"
+					</a> <a class="carousel-control-next" href="${pageContext.request.contextPath}#carouselExampleControls"
 						role="button" data-slide="next"> <span
 						class="carousel-control-next-icon" aria-hidden="true"></span> <span
 						class="sr-only">Next</span>

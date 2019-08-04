@@ -16,6 +16,9 @@
 
 	<logger name="org.springframework.web" level="DEBUG">
 	</logger>
+	
+	<logger name="org.springframework.transaction" level="DEBUG">
+	</logger>
 
 	<logger name="rocks.monsees" level="DEBUG">
 	</logger>
@@ -23,8 +26,16 @@
 	<logger name="org.springframework.security" level="WARN">
 	</logger>
 
-	<logger name="org.hibernate.SQL" level="WARN">
+	<logger name="org.hibernate.SQL" level="DEBUG">
 	</logger>
+	
+	<logger name="org.hibernate.transaction" level="DEBUG">
+	</logger>
+	
+
+	<!-- uncomment to show binding params -->
+	<!-- <logger name="org.hibernate.type" level="TRACE"></logger>  -->
+
 
 	<logger name="org.springframework.data" level="WARN">
 	</logger>

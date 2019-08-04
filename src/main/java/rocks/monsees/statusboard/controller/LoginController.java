@@ -21,12 +21,13 @@ public class LoginController {
 	public String getIndex(Model model){
 		logger.debug("Trying to fetch index.jsp");
 		model.addAttribute("message", "statusboard");
-		model.addAttribute("employees", employeeService.getAllEmployees());
+//		model.addAttribute("employees", employeeService.getAllEmployees());
+		model.addAttribute("employees", employeeService.getAllEmployeesWithStatusList());
 		return "index";
 	}
 	
 	
-	//this method is called by spring security and the url path name is analysed by js
+	//this method is called by spring security and the url path name is analysed by js to show login modal
 	@GetMapping("/login")
 	public String getIndexWithLoginModal(Model model) {
 		logger.debug("Trying to fetch index.jsp with login modal");
