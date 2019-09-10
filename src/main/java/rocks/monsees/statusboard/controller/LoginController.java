@@ -13,34 +13,24 @@ import rocks.monsees.statusboard.service.EmployeeService;
 public class LoginController {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Autowired
 	EmployeeService employeeService;
-	
+
 	@GetMapping("/")
-	public String getIndex(Model model){
-		logger.debug("Trying to fetch index.jsp");
+	public String getIndex(Model model) {
 		model.addAttribute("message", "statusboard");
 //		model.addAttribute("employees", employeeService.getAllEmployees());
 		model.addAttribute("employees", employeeService.getAllEmployeesWithStatusList());
 		return "index";
 	}
-	
-	
-	//this method is called by spring security and the url path name is analysed by js to show login modal
+
+	// this method is called by spring security and the url path name is analysed by
+	// js to show login modal
 	@GetMapping("/login")
 	public String getIndexWithLoginModal(Model model) {
-		logger.debug("Trying to fetch index.jsp with login modal");
 		model.addAttribute("message", "statusboard");
 		model.addAttribute("employees", employeeService.getAllEmployees());
 		return "index";
 	}
-	
-	
-	@GetMapping("/secure")
-	public String getSecurePage(Model model) {
-		logger.debug("Trying to fetch secure.jsp");
-		return "secure";
-	}
-
 }

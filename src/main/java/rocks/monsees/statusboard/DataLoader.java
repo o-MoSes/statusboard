@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import rocks.monsees.statusboard.model.Authority;
 import rocks.monsees.statusboard.model.Employee;
+import rocks.monsees.statusboard.model.Event;
 import rocks.monsees.statusboard.model.Status;
 import rocks.monsees.statusboard.service.EmployeeService;
 import rocks.monsees.statusboard.service.StatusService;
@@ -28,7 +29,6 @@ public class DataLoader implements CommandLineRunner {
 	
 	@Autowired
 	private StatusService statusService;
-	
 	
 	@Autowired
 	ApplicationContext ctx;

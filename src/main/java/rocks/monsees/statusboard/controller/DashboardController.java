@@ -39,14 +39,13 @@ public class DashboardController {
 
 	@GetMapping("/dashboard")
 	public String showDashboard(Model model, Principal principal) {
-		logger.debug("Trying to fetch dashboard.jsp");
 		model.addAttribute("employeeName", principal.getName());
 		model.addAttribute("statusList", employeeService.getEmployeeByPositionWithStatusList(principal.getName()).getStatusList());
 		
 
 		/*
 		 * check if status was already added to model by redirect because of validation
-		 * error if model contains none add one as form backing bean
+		 * error- if model contains none then add one as form backing bean
 		 */
 		if (!model.containsAttribute("newStatus")) {
 			model.addAttribute("newStatus", new Status());
@@ -61,11 +60,20 @@ public class DashboardController {
 	public String addStatus(@Valid @ModelAttribute("newStatus") Status newStatus, BindingResult result,
 			RedirectAttributes ra, Principal principal) {
 
+		String employeePosition= principal.getName();
+		
+		/* add command bean and statusExists attribute if new status conflicts with existing status. 
+		cant be done via Constraint because the status is not bound to a Employee on validation time */
+		if(employeeService.statusForThisPeriodExists(employeePosition,newStatus)){
+			ra.addFlashAttribute("newStatus", newStatus);
+			ra.addFlashAttribute("statusExists", new String("Oops, you already set a status for this period"));
+		}
 		// add command bean and binding result to redirect in case of validation error
-		if (result.hasErrors()) {
+		else if (result.hasErrors()) {
 			ra.addFlashAttribute("newStatus", newStatus);
 			ra.addFlashAttribute("org.springframework.validation.BindingResult.newStatus", result);
-		} else {
+		} 
+		else{
 
 			// not saving new status before adding it to employee results in
 			// org.hibernate.LazyInitializationException
@@ -73,7 +81,7 @@ public class DashboardController {
 //			employeeService.addStatusForEmployee(principal.getName(), newStatus);
 			
 //			Employee employee = employeeService.getEmployeeByPosition(principal.getName()); //causes org.hibernate.LazyInitializationException when calling employee.addStatus(new Status), because assocation wasnt initialized
-			Employee employee = employeeService.getEmployeeByPositionWithStatusList(principal.getName()); //this will initialize the child and prevent lazy Exception
+			Employee employee = employeeService.getEmployeeByPositionWithStatusList(employeePosition); //this will initialize the child and prevent lazy Exception
 	        employee.addStatus(newStatus); //hier entsteht der LazyFehler!!!!!!
 //			List<Status> statusLi1 = new ArrayList<Status>();
 //			statusLi1.add(new Status(LocalDate.of(2019, 8, 10),LocalDate.of(2019, 8, 11),true,"Cascade Test"));
@@ -87,11 +95,8 @@ public class DashboardController {
 	
 	@GetMapping("delete/status")
 	public String deleteStatus(@RequestParam int id, Principal principal) {
-		logger.debug("Trying to delete status with id " +id+ " of employee: "+principal.getName());
 		statusService.deleteStatus(id);
-		
-		//show toast?
-		return "redirect:/dashboard";
+		return "redirect:/dashboard?statusDeleted"; //trigger toast 
 	}
 	
 	

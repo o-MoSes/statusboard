@@ -8,14 +8,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <%@ include file="common/header.jspf"%>
-<script type="text/javascript" src="${pageContext.request.contextPath}js/time.js" defer></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}js/showLoginLogoutResult.js" defer></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}js/time.js" defer></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}js/showLoginLogoutResult.js"
+	defer></script>
 <title>statusboard</title>
 </head>
 <body>
 	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
 		aria-labelledby="loginModal" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-dialog modal-dialog-centered justify-content-center"
+			role="document">
 			<div class="modal-content bg-transp">
 				<div class="modal-header flex-column align-items-center border-0">
 					<button type="button" class="close" data-dismiss="modal"
@@ -54,7 +58,8 @@
 	<div class="d-flex flex-row-reverse w-100 show-btn">
 		<!-- using href instead of  data-toggle="modal" data-target="#loginModal" to clean url params when unsuccessfull login is followed by click on chevron-->
 		<sec:authorize access="!isAuthenticated()">
-			<a href="${pageContext.request.contextPath}/login" class="btn modal-btn mt-4 mr-5"><i
+			<a href="${pageContext.request.contextPath}/login"
+				class="btn modal-btn mt-4 mr-5"><i
 				class="fas fa-chevron-right fa-lg"></i></a>
 		</sec:authorize>
 		<sec:authorize access="isAuthenticated()">
@@ -67,7 +72,9 @@
 						<sec:authentication property="name" />
 						<div class="drp-content text-center">
 							<div class="py-4"></div>
-							<a href="${pageContext.request.contextPath}/dashboard"><i class="fas fa-list"></i></a> <a href="${pageContext.request.contextPath}#"><i
+							<a href="${pageContext.request.contextPath}/dashboard"><i
+								class="fas fa-list"></i></a> <a
+								href="${pageContext.request.contextPath}#"><i
 								class="fas fa-user-cog"></i></a>
 							<form class="dropdown-item p-0" action="/checkout" method="post">
 								<button class="logout-btn" type="submit">
@@ -85,32 +92,38 @@
 	</div>
 	<div class="container px-0 pt-4">
 		<div class="toast">
-			<div class="toast-body p-2 logout-toast">
+			<div class="toast-body p-2 logout-toast text-center">
 				<i class="fas fa-check mx-2 logout-check"></i>Logout successfull!
 			</div>
 		</div>
 		<div class="row status">
 			<div class="col">
-
-
 				<table class="table mt-5 gradient-table">
 					<tbody>
 						<c:forEach items="${employees}" var="employee">
-							<tr class="grad-bor-bot-left">
-								<td>${employee.position}</td>
-								<td>${employee.title}&nbsp;${employee.name}</td>
+							<tr class="d-flex">
+								<td class="col-2 text-center">${employee.position}</td>
+								<td class="col-2 text-center">${employee.title}&nbsp;${employee.name}</td>
 								<c:choose>
 									<%--  <c:when test="${employee.position == 'master'}"> --%>
 									<c:when test="${employee.getCurrentStatus().available}">
-										<td><span class="dot-available"></span></td>
+										<td class="col-2 text-center"><span class="dot-available"></span></td>
 									</c:when>
 									<c:otherwise>
-										<td><span class="dot-unavailable"></span></td>
+										<td class="col-2 text-center"><span
+											class="dot-unavailable"></span></td>
 									</c:otherwise>
 								</c:choose>
 								<%-- <td>${employee.status.description}</td> --%>
-								<td>${employee.getCurrentStatus().getStatusPeriod()}</td>
-								<td>${employee.getCurrentStatus().description}</td>
+								<td class="col-3 pl-5">${employee.getCurrentStatus().getStatusPeriod()}</td>
+								<td class="col-3">${employee.getCurrentStatus().description}</td>
+							</tr>
+							<tr class="gradient-spacer d-flex">
+								<td class="px-0 col-2"><div></div></td>
+								<td class="px-0 col-2"><div></div></td>
+								<td class="px-0 col-2"><div></div></td>
+								<td class="px-0 col-3"><div></div></td>
+								<td class="px-0 col-3"><div></div></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -132,11 +145,13 @@
 							<h3 class="text-center">${employees[1].position}</h3>
 						</div>
 					</div>
-					<a class="carousel-control-prev" href="${pageContext.request.contextPath}#carouselExampleControls"
+					<a class="carousel-control-prev"
+						href="${pageContext.request.contextPath}#carouselExampleControls"
 						role="button" data-slide="prev"> <span
 						class="carousel-control-prev-icon" aria-hidden="true"></span> <span
 						class="sr-only">Previous</span>
-					</a> <a class="carousel-control-next" href="${pageContext.request.contextPath}#carouselExampleControls"
+					</a> <a class="carousel-control-next"
+						href="${pageContext.request.contextPath}#carouselExampleControls"
 						role="button" data-slide="next"> <span
 						class="carousel-control-next-icon" aria-hidden="true"></span> <span
 						class="sr-only">Next</span>

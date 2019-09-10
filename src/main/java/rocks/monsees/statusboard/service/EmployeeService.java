@@ -26,7 +26,7 @@ public class EmployeeService {
 
 	public Employee getEmployeeById(int id) {
 		logger.debug("Trying to fetch employee with id: " + id);
-		return employeeRepo.findById(id).get();
+		return employeeRepo.findById(id).get(); 
 	}
 
 	public Employee getEmployeeByPosition(String position) {
@@ -70,14 +70,13 @@ public class EmployeeService {
 		employeeRepo.save(employee);
 	}
 
-	
 	public void addStatusForEmployee(String position, Status newStatus) {
 		Employee employee = this.getEmployeeByPositionWithStatusList(position);
 		employee.addStatus(newStatus);
 //		System.out.println("Collection after Sorting"+employee.getStatusList());
 		this.updateEmployee(employee);
 	}
-	
+
 	public Employee getEmployeeByPositionWithStatusList(String position) {
 		return employeeRepo.findOneWithStatusByPosition(position);
 	}
@@ -89,6 +88,22 @@ public class EmployeeService {
 		return employeeList;
 	}
 
+	public boolean statusForThisPeriodExists(String employeePosition, Status newStatus) {
+		logger.debug("Checking if status for period already exists");
+		if (null == newStatus.getBegin())
+			return false;
+		else {
+			Employee employee = this.getEmployeeByPositionWithStatusList(employeePosition);
+			List<Status> statusList = employee.getStatusList();
+			for (Status status : statusList) {
+				if (status.getBegin().isEqual(newStatus.getBegin()) || status.getEnd().isEqual(newStatus.getEnd())) {
+					System.out.println("exists!");
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 
 	// methods for changing single values of employee-object
 }

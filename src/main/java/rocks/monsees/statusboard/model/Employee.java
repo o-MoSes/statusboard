@@ -18,20 +18,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 
-import org.hibernate.validator.internal.util.privilegedactions.NewSchema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
+@Setter
+@Getter
 public class Employee {
 
 	private static final Logger logger = LoggerFactory.getLogger(Employee.class);
 
 	@Id
 	@GeneratedValue
+	@Setter(AccessLevel.NONE)
 	private int id;
 	private String position; // used for login
 	private String title;
@@ -40,11 +45,13 @@ public class Employee {
 
 	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
 	@OrderBy(value="begin")
+	@Setter(AccessLevel.NONE)
 	private List<Status> statusList = new ArrayList<Status>();
 
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "Authority", joinColumns = @JoinColumn(name = "id"))
 	@Enumerated(EnumType.STRING)
+	@Setter(AccessLevel.NONE)
 	private Set<Authority> authorities = new HashSet<>();
 
 	public Employee() {
@@ -60,68 +67,12 @@ public class Employee {
 		this.authorities = authorities;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getPosition() {
-		return position;
-	}
-
-	public void setPosition(String position) {
-		this.position = position;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-//	public void setStatus(Status status) {
-//		this.status = status;
-//	}
-//
-//	public Status getStatus() {
-//		return this.status;
-//	}
-
-	public Set<Authority> getAuthorities() {
-		return authorities;
-	}
-
 	public void addAuthority(Authority authority) {
 		authorities.add(authority);
 	}
 
 	public void removeAuthority(Authority authority) {
 		authorities.remove(authority);
-	}
-
-	public List<Status> getStatusList() {
-		return statusList;
 	}
 
 	public void setStatusList(List<Status> statusList) {

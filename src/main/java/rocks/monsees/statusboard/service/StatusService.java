@@ -13,6 +13,8 @@ public class StatusService {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
+	// TODO Check if service is really required
+	
 	@Autowired
 	StatusRepository statusRepository;
 

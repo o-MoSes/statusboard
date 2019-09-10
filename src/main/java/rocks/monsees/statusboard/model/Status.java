@@ -15,14 +15,20 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 import rocks.monsees.statusboard.validation.DateFieldConstraint;
 
 @Entity
 @DateFieldConstraint
+@Setter
+@Getter
 public class Status implements Comparable<Status> {
 
 	@Id
 	@GeneratedValue
+	@Setter(AccessLevel.NONE)
 	private int id;
 
 	@NotNull(message = "Please enter a start date.")
@@ -59,54 +65,6 @@ public class Status implements Comparable<Status> {
 		this.end = end;
 		this.available = available;
 		this.description = description;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public boolean isAvailable() {
-		return available;
-	}
-
-	public boolean getAvailable() {
-		return available;
-	}
-
-	public void setAvailable(boolean available) {
-		this.available = available;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Employee getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-
-	public LocalDate getBegin() {
-		return begin;
-	}
-
-	public void setBegin(LocalDate begin) {
-		this.begin = begin;
-	}
-
-	public LocalDate getEnd() {
-		return end;
-	}
-
-	public void setEnd(LocalDate end) {
-		this.end = end;
 	}
 
 	public String getStatusPeriod() {

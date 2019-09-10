@@ -15,6 +15,8 @@ uri="http://www.springframework.org/tags/form"%>
 	src="${pageContext.request.contextPath}js/showAddStatusModal.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}js/addDatepicker.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}js/showToastMessages.js"></script>
 <script type="text/javascript">
 	window.addEventListener('load', function() {
 		//modelattribute cant be accessed from external js
@@ -22,19 +24,32 @@ uri="http://www.springframework.org/tags/form"%>
 			showModal();
 	});
 </script>
+<script type="text/javascript">
+	$(document).on("click", "#deleteStatusAnchor", function() {
+		var statusID = $(this).data('id'); //get ID from data attribut of anchor
+		var deleteURL = "/delete/status?id=" + statusID; //create delete URL
+		$("#deleteStatusLink").attr("href", deleteURL); //add delete URL to modal anchor
+		$('#deleteStatusModal').modal('show');//show delete modal dialog
+	});
+</script>
 <title>dashboard</title>
 </head>
 <body class="h-100">
 	<div class="modal fade" id="addStatusModal" tabindex="-1" role="dialog"
 		aria-labelledby="addStatusModal" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content bg-transp">
+		<div class="modal-dialog modal-dialog-centered justify-content-center" role="document">
+			<div class="modal-content bg-transp-blue">
 				<div class="modal-header flex-column align-items-center border-0">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span class="text-light" aria-hidden="true">&times;</span>
 					</button>
 					<h4 class="modal-title font-weight-bold ">Status</h4>
+					<c:if test="${statusExists != null}">
+						<p class="text-center mt-4 text-danger">
+							<i class="fas fa-times mr-2"></i>${statusExists}
+						</p>
+					</c:if>
 				</div>
 				<div class="modal-body mt-2">
 					<form:form method="POST"
@@ -68,12 +83,12 @@ uri="http://www.springframework.org/tags/form"%>
 									<form:errors path="end" style="color:red" />
 								</div>
 								<div class="form-group">
-									<label for="statusSelect">availability</label> <select
-										class="form-control  bottom-border text-white"
-										id="statusSelect">
-										<option>available</option>
-										<option>absent</option>
-									</select>
+									<label for="statusSelect">availability</label>
+									<form:select class="form-control bottom-border text-white"
+										id="statusSelect" path="available">
+										<form:option value="true" label="available" />
+										<form:option value="false" label="absent" />
+									</form:select>
 								</div>
 								<div class="form-group">
 									<label for="description">description:</label>
@@ -86,10 +101,33 @@ uri="http://www.springframework.org/tags/form"%>
 							</div>
 						</div>
 						<button type="submit"
-							class="btn btn-outline-light mx-2 mt-4 login-btn rounded-pill float-right">Submit</button>
+							class="btn btn-outline-light mx-2 mt-4 hover-btn rounded-pill float-right">Submit</button>
 					</form:form>
 				</div>
 			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="deleteStatusModal" tabindex="-1"
+		role="dialog">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content bg-transp">
+				<div class="modal-header bottom-border justify-content-center">
+					<h5 class="modal-title">Do you really want to delete the
+						status?</h5>
+				</div>
+				<div class="modal-body d-flex justify-content-between">
+					<button type="button"
+						class="btn btn-outline-light rounded-pill  hover-btn"
+						data-dismiss="modal">Cancel</button>
+					<a class="btn btn-outline-light rounded-pill hover-btn"
+						id="deleteStatusLink" href="">Delete</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="toast">
+		<div class="toast-body p-2 logout-toast text-center">
+			<i class="fas fa-check mx-2 logout-check"></i>Status deleted!
 		</div>
 	</div>
 	<div class="container-fluid h-100">
@@ -164,9 +202,10 @@ uri="http://www.springframework.org/tags/form"%>
 										<td>${status.description}</td>
 										<td class="text-center"><a
 											href="<c:url value="/editStatus?id=${status.id}"/>"><i
-												class="fas fa-pen mx-2"></i></a> <a
-											href="<c:url value="/delete/status?id=${status.id}"/>" onclick="if (!(confirm('Do you really wanna delete the status?'))) return false"><i
-												class="fas fa-trash mx-2"></i></a></td>
+												class="fas fa-pen mx-2"></i></a> <a id="deleteStatusAnchor"
+											href="#" data-id="${status.id}"> <i
+												class="fas fa-trash mx-2"></i>
+										</a></td>
 									</tr>
 								</c:forEach>
 							</tbody>

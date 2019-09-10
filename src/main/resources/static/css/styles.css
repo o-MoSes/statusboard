@@ -9,20 +9,29 @@ body {
 }
 
 /* status table */
-hr {
-	height: 10px;
-	border: 0;
-	box-shadow: 0 10px 10px -10px #8c8b8b inset;
-}
-
 
 .gradient-table td{
 	color: rgba(255, 255, 255, 1);
 	border: none;
-	padding-left: 0;
-
 }
 
+
+tr.gradient-spacer td div{
+	height: 3px;
+	background-attachment:fixed;
+	background-image: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(235, 163, 0, 1)),
+		to(transparent));
+	background-image: -webkit-linear-gradient(left, rgba(235, 163, 0, 1),
+		transparent);
+	background-image: -moz-linear-gradient(left, rgba(235, 163, 0, 1),
+		transparent);
+	background-image: -o-linear-gradient(left, rgba(235, 163, 0, 1),
+		transparent);
+}
+
+
+/*
+Funktioniert nicht in allen Browsern, weil position:relative nicht überall auf tr erlaubt ist. SOmit wird der Gradient nur 1 mal angezeigt, statt für jede tr
 
 .grad-bor-bot-left {
 	position: relative;
@@ -44,6 +53,7 @@ hr {
 	background-image: -o-linear-gradient(left, rgba(235, 163, 0, 1),
 		transparent);
 }
+*/
 
 .grad-bor-bot-both {
 	position: relative;
@@ -90,6 +100,7 @@ hr {
 .dot-available {
 	height: 25px;
 	width: 25px;
+	max-width: 25px;
 	background-color: rgba(235, 163, 0, 1);
 	border-radius: 50%;
 	display: inline-block;
@@ -140,6 +151,7 @@ hr {
 
 .fa-chevron-right {
 	text-shadow: 1px 1px 8px silver;
+	/*TO DO  */
 }
 
 .login-btn:hover {
@@ -147,8 +159,17 @@ hr {
 	border-color: rgba(235, 163, 0, 0.9);
 }
 
+.hover-btn:hover{
+	background-color: rgba(235, 163, 0, 0.9);
+	border-color: rgba(235, 163, 0, 0.9);
+}
+
 .bg-transp{
 	background-color: rgba(80, 80, 80, 0.6);
+}
+
+.bg-transp-blue{
+	background-color: rgba(1, 26, 35, 0.6);
 }
 
 .bottom-border {
@@ -171,15 +192,17 @@ hr {
 /* Logout toast */
 .toast {
 	position: absolute;
-	top: 15px;
-	left: 0px;
+	top: 5px;
+	width: 200px;
+    left:50%;
+	margin-left:-100px;
 	border: 0;
 	box-shadow: 0px 0px 2px 1px silver;
 }
 
 .logout-toast {
 	background-color: rgba(80, 80, 80, 0.8);
-	border-left: 3px solid rgba(41, 241, 195, 1);
+	border-top: 3px solid rgba(41, 241, 195, 1);
 }
 
 .logout-check {

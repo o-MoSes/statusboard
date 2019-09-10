@@ -12,6 +12,7 @@ import rocks.monsees.statusboard.exception.EmployeeExistsException;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+	//TODO add logging to file
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	
@@ -19,7 +20,7 @@ public class GlobalExceptionHandler {
 	public String handleExceptions(HttpServletRequest request, Exception ex) {
 		logger.info("Exception raised on URL: "+request.getRequestURL());
 		logger.info("Exception raised: "+ex);
-		
+		ex.printStackTrace();
 		
 		if(ex instanceof EmployeeExistsException) {
 			return "lalala";

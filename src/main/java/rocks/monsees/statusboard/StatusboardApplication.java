@@ -16,15 +16,4 @@ public class StatusboardApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(StatusboardApplication.class, args);
 	}
-
-	
-	
-	@Bean
-	CommandLineRunner runner() {
-		return args -> {
-//			logger.debug("Loading data");
-			//
-		};
-	}
-
 }
