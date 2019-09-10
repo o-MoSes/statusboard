@@ -12,7 +12,6 @@ import rocks.monsees.statusboard.exception.EmployeeExistsException;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-	//TODO add logging to file
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	
